@@ -2,7 +2,11 @@ version: '3'
 
 services:
   redis-01:
-    container_name: "redis-01"
-    build: .
+    image: redis:7.0.0
+    container_name: "redis-01"  # Change container name (default is constructed from path and service name)
     volumes:
-      - ./redis-data:/data
+      - ./redis-data:/data      # This will map the directory from host to the one from container 
+      - ./shared:/var/lib/redis
+    expose:
+      - "6379"                  # Port mapping - this instance can communicate with others on port 6379
+    command: "redis-server /var/lib/redis/redis.conf"
