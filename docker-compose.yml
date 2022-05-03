@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  redis-01:
+    container_name: "redis-01"
+    build: .
+    volumes:
+      - ./redis-data:/data
