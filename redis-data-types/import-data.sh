@@ -3,7 +3,7 @@
 set -e 
 set -o pipefail
 
-. ./script-utils.sh
+. ../script-utils.sh
 
 assert_parameter $1
 start_containers $1
