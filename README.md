@@ -14,6 +14,8 @@ In case something goes horribly wrong, there are branches with solutions to not 
 
 ## Scripts
 
+### redis-cli
+
 There is a helper script which will auto start services defined in `docker-compose.yml` and connect to provided container (using container name).
 
 If you don't want to use this script - simply run:
@@ -22,3 +24,8 @@ If you don't want to use this script - simply run:
 docker-compose up # start services
 docker exec -it <CONTAINER_NAME> redis-cli # start interactive session and run `redis-cli` in container
 ```
+
+### import-data
+
+There is a script that can be used to import the data to started Redis container. It uses `redis-cli` to connect to the Redis and imports both movies and actors datasets. Datasets are by courtesy of <https://github.com/redis-developer/redis-datasets/tree/movie-dataset>.
+ 
