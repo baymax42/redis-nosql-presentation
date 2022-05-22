@@ -42,3 +42,4 @@ luac.out
 
 # Redis persistence data
 **/redis-data/
+*.rdb

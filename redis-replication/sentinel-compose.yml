@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+  redis-master-01:
+    image: redis:7.0.0
+    container_name: "redis-master-01"
+    volumes:
+      - ./redis-master-01:/data
+      - ./redis-master-01:/etc/redis
+    expose:
+      - "6379"
+    command: "redis-server /etc/redis/redis.conf"
+  redis-slave-01:
+    image: redis:7.0.0
+    container_name: "redis-slave-01"
+    volumes:
+      - ./redis-slave-01:/data
+      - ./redis-slave-01:/etc/redis
+    expose:
+      - "6380"
+    command: "redis-server /etc/redis/redis.conf"
+  redis-slave-02:
+    image: redis:7.0.0
+    container_name: "redis-slave-02"
+    volumes:
+      - ./redis-slave-02:/data
+      - ./redis-slave-02:/etc/redis
+    expose:
+      - "6381"
+    command: "redis-server /etc/redis/redis.conf"
+
+  redis-sentinel-01:
+    image: redis:7.0.0
+    container_name: "redis-sentinel-01"
+    volumes:
+      - ./redis-master-01:/etc/redis
+    expose:
+      - "26379"
+    depends_on:
+      - redis-master-01
+#      - redis-slave-01
+#      - redis-slave-02
+    command: "redis-sentinel /etc/redis/sentinel.conf"
+  redis-sentinel-02:
+    image: redis:7.0.0
+    container_name: "redis-sentinel-02"
+    volumes:
+      - ./redis-slave-01:/etc/redis
+    expose:
+      - "26380"
+    depends_on:
+      - redis-master-01
+#      - redis-slave-01
+#      - redis-slave-02
+    command: "redis-sentinel /etc/redis/sentinel.conf"
+  redis-sentinel-03:
+    image: redis:7.0.0
+    container_name: "redis-sentinel-03"
+    volumes:
+      - ./redis-slave-02:/etc/redis
+    expose:
+      - "26381"
+    depends_on:
+      - redis-master-01
+#      - redis-slave-01
+#      - redis-slave-02
+    command: "redis-sentinel /etc/redis/sentinel.conf"

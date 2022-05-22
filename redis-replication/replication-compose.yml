@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  redis-master-01:
+    image: redis:7.0.0
+    container_name: "redis-master-01"
+    volumes:
+      - ./redis-master-01:/data
+      - ./redis-master-01:/etc/redis
+    expose:
+      - "6379"
+    command: "redis-server /etc/redis/redis.conf"
+  redis-slave-01:
+    image: redis:7.0.0
+    container_name: "redis-slave-01"
+    volumes:
+      - ./redis-slave-01:/data
+      - ./redis-slave-01:/etc/redis
+    expose:
+      - "6380"
+    command: "redis-server /etc/redis/redis.conf"
+  redis-slave-02:
+    image: redis:7.0.0
+    container_name: "redis-slave-02"
+    volumes:
+      - ./redis-slave-02:/data
+      - ./redis-slave-02:/etc/redis
+    expose:
+      - "6381"
+    command: "redis-server /etc/redis/redis.conf"
