@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  node-01:
+    image: redis:7.0.0
+    container_name: "node-01"
+    volumes:
+      - ./node-01:/data
+      - ./node-01:/etc/redis
+    expose:
+      - "7001"
+    command: "redis-server /etc/redis/redis.conf"
+
+  node-02:
+    image: redis:7.0.0
+    container_name: "node-02"
+    volumes:
+      - ./node-02:/data
+      - ./node-02:/etc/redis
+    expose:
+      - "7002"
+    command: "redis-server /etc/redis/redis.conf"
+
+  node-03:
+    image: redis:7.0.0
+    container_name: "node-03"
+    volumes:
+      - ./node-03:/data
+      - ./node-03:/etc/redis
+    expose:
+      - "7003"
+    command: "redis-server /etc/redis/redis.conf"
+
+  node-04:
+    image: redis:7.0.0
+    container_name: "node-04"
+    volumes:
+      - ./node-04:/data
+      - ./node-04:/etc/redis
+    expose:
+      - "7004"
+    command: "redis-server /etc/redis/redis.conf"
+
+  node-05:
+    image: redis:7.0.0
+    container_name: "node-05"
+    volumes:
+      - ./node-05:/data
+      - ./node-05:/etc/redis
+    expose:
+      - "7005"
+    command: "redis-server /etc/redis/redis.conf"
+
+  node-06:
+    image: redis:7.0.0
+    container_name: "node-06"
+    volumes:
+      - ./node-06:/data
+      - ./node-06:/etc/redis
+    expose:
+      - "7006"
+    command: "redis-server /etc/redis/redis.conf"
